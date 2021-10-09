@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def subplotted_2d(
+def subplotted(
     iterable:Union[int,Iterable],
     ncols:int=2,
     figsize=None,
