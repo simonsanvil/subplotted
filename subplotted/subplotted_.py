@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from typing import List, Tuple, Iterable, Union
+
 def subplotted(
     iterable:Union[int,Iterable],
     ncols:int=2,
