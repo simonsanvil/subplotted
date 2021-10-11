@@ -20,23 +20,23 @@ def subplotted(
 
   Parameters
   ---------------
-  iterable:Union[int,Iterable], required
-    Iterable instance or integer (to make a range)
-  ncols:int
-    Number of columns for the subplots grid
-  figsize:tuple, optional
-    Tuple defining the (width,height) of the image of the matplotlib figure
-  axes_per_iter:int=1
-    Number of axes to return for each instance of the iterable, default is one ax. 
-    If greater than one the resulting figure will look like a grid of len(iterable) calls where each cell has another of axes_per_iter subplot.
-   ncols_second_dim:int=2
-    Number of columns of the second dim (if axes_per_iter is greater than one)
-  zipped:bool=True
-    Whether to return the figure, axes, and iterable elements zipped or not. Set to True to use in for loops.
-  second_dim_wspace:float=0
-    Width space between each inner ax of the second dimension. Default is 0
-  second_dim_hspace:float=0
-    Height space between each inner ax of the second dimension. Default is 0
+  iterable : Union[int,Iterable], required
+      Iterable instance or integer (to make a range)    
+  ncols : int
+      Number of columns for the subplots grid
+  figsize : tuple, optional
+      Tuple defining the (width,height) of the image of the matplotlib figure
+  axes_per_iter : int=1
+      Number of axes to return for each instance of the iterable, default is one ax. 
+      If greater than one the resulting figure will look like a grid of len(iterable) cells where each cell has another of axes_per_iter subplot.
+  ncols_second_dim : int=2
+      Number of columns of the second dim (if axes_per_iter is greater than one)
+  zipped : bool=True
+      Whether to return the figure, axes, and iterable elements zipped or not. Set to True to use in for loops.
+  second_dim_wspace : float=0
+      Width space between each inner ax of the second dimension. Default is 0
+  second_dim_hspace : float=0
+      Height space between each inner ax of the second dimension. Default is 0
   '''
   if isinstance(iterable,int):
       iterable = range(iterable)
