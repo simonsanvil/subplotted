@@ -29,7 +29,8 @@ Use the subplot helper "S" to help you customize the aspect of your figure.
 
 
 ```python
-for S,ax,(i,img_path) in subplotted_2d(enumerate(images[:10]),ncols=5,figsize=(22,6)):
+#Make it 5 columns instead of 2 and customize the figure
+for S,ax,(i,img_path) in subplotted(enumerate(img_paths),ncols=5,figsize=(22,6)):
   img = io.imread(img_path)
   ax.imshow(img)
   #Customize each individual ax
