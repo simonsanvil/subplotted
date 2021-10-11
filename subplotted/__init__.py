@@ -1,1 +1,1 @@
-from .subplotted_ import subplotted
+from .subplotted import subplotted
