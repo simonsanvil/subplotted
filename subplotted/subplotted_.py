@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from typing import List, Tuple, Iterable, Union
+from ._subplotted_helper import SubplottedHelper
 
 def subplotted(
     iterable:Union[int,Iterable],
@@ -39,6 +40,9 @@ def subplotted(
   '''
   if isinstance(iterable,int):
       iterable = range(iterable)
+  elif isinstance(iterable,(enumerate)) or not isinstance(iterable,Iterable):
+    iterable = list(iterable)
+
   nrows = get_nrows_from_iterable(iterable,ncols)
   figsize = figsize if figsize is not None else (ncols*8,nrows*5)
   fig = plt.figure(figsize=figsize, constrained_layout=False,**kwargs)
@@ -56,14 +60,18 @@ def subplotted(
         inner_grid = outer_grid[i, j].subgridspec(nrows_second_dim, ncols_second_dim, wspace=second_dim_wspace, hspace=second_dim_hspace)
         inner_axes =  [ax for subl in np.atleast_2d(inner_grid.subplots()) for ax in subl]
         axlist.append(inner_axes[:(num_axes_second_dim)])
+    inner_grid_shape = (inner_grid.nrows,inner_grid.ncols)
   else:
     axes = np.atleast_2d(outer_grid.subplots())
     axlist = [ax for subl in axes for ax in subl]
+    inner_grid_shape = (1,1)
+
+  S = SubplottedHelper(iterable,fig,axlist,outer_grid,inner_grid_shape,dict(ncols=ncols,ncols_second_dim=2,num_axes_second_dim=num_axes_second_dim))
 
   if zipped:
-    return zip([fig for _ in axlist],axlist,iterable)
+    return zip([S for _ in axlist],axlist,iterable)
   else:
-    return (fig,axlist,iterable)
+    return (S,axlist,iterable)
 
 def get_nrows_from_iterable(iterable,ncols):
   return np.ceil(len(iterable)/ncols).astype(int)
