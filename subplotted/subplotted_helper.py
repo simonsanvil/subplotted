@@ -66,12 +66,15 @@ class SubplottedHelper:
     func : Callable or str
         Callable or name of a matplotlib.axes function to apply to the ax.
         If a callable it must receive a matplotlib.axes ax as its first parameter.
+
     indices : List, Callable or int
         Indices of the axes for which the function will be applied (starting with 0).
         If a callable it is expected to receive an index number of an ax and return a boolean value
         of whether or not the function should be applied to that index.
+
     val : optional
         Single value to pass to func as second argument
+        
     **kwargs
         Arguments to pass to func
     '''

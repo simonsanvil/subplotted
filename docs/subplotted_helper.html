@@ -94,12 +94,15 @@ class SubplottedHelper:
     func : Callable or str
         Callable or name of a matplotlib.axes function to apply to the ax.
         If a callable it must receive a matplotlib.axes ax as its first parameter.
+
     indices : List, Callable or int
         Indices of the axes for which the function will be applied (starting with 0).
         If a callable it is expected to receive an index number of an ax and return a boolean value
         of whether or not the function should be applied to that index.
+
     val : optional
         Single value to pass to func as second argument
+        
     **kwargs
         Arguments to pass to func
     &#39;&#39;&#39;
@@ -207,12 +210,15 @@ class SubplottedHelper:
     func : Callable or str
         Callable or name of a matplotlib.axes function to apply to the ax.
         If a callable it must receive a matplotlib.axes ax as its first parameter.
+
     indices : List, Callable or int
         Indices of the axes for which the function will be applied (starting with 0).
         If a callable it is expected to receive an index number of an ax and return a boolean value
         of whether or not the function should be applied to that index.
+
     val : optional
         Single value to pass to func as second argument
+        
     **kwargs
         Arguments to pass to func
     &#39;&#39;&#39;
@@ -315,14 +321,14 @@ def subplots(self):
 <h2 id="parameters">Parameters:</h2>
 <p>func : Callable or str
 Callable or name of a matplotlib.axes function to apply to the ax.
-If a callable it must receive a matplotlib.axes ax as its first parameter.
-indices : List, Callable or int
+If a callable it must receive a matplotlib.axes ax as its first parameter.</p>
+<p>indices : List, Callable or int
 Indices of the axes for which the function will be applied (starting with 0).
 If a callable it is expected to receive an index number of an ax and return a boolean value
-of whether or not the function should be applied to that index.
-val : optional
-Single value to pass to func as second argument
-**kwargs
+of whether or not the function should be applied to that index.</p>
+<p>val : optional
+Single value to pass to func as second argument</p>
+<p>**kwargs
 Arguments to pass to func</p></div>
 <details class="source">
 <summary>
@@ -337,12 +343,15 @@ Arguments to pass to func</p></div>
   func : Callable or str
       Callable or name of a matplotlib.axes function to apply to the ax.
       If a callable it must receive a matplotlib.axes ax as its first parameter.
+
   indices : List, Callable or int
       Indices of the axes for which the function will be applied (starting with 0).
       If a callable it is expected to receive an index number of an ax and return a boolean value
       of whether or not the function should be applied to that index.
+
   val : optional
       Single value to pass to func as second argument
+      
   **kwargs
       Arguments to pass to func
   &#39;&#39;&#39;
