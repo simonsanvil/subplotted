@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from typing import List, Tuple, Iterable, Union
-from ._subplotted_helper import SubplottedHelper
+from .subplotted_helper import SubplottedHelper
 
 def subplotted(
     iterable:Union[int,Iterable],
