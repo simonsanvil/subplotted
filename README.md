@@ -46,8 +46,33 @@ else:
   S.fig.tight_layout()
 ```
 
-![example img 1](https://www.dropbox.com/s/b6q4quqnwmcxtwq/subplotted_ex_2.png?raw=1)
+![example img 2](https://www.dropbox.com/s/b6q4quqnwmcxtwq/subplotted_ex_2.png?raw=1)
 
+You can also modify the number of axes to obtain per iteration
+
+```python
+for S,(ax1,ax2,ax3),img_path in subplotted(img_paths[:3],ncols=1,axes_per_iter=3,figsize=(8,6),ncols_second_dim=3):
+  img = io.imread(img_path)
+  r, g, b = img.copy(), img.copy(), img.copy()
+  r[:,:,[1,2]], g[:,:,[0,2]], b[:,:,[0,1]] = 0,0,0
+  ax1.imshow(r)
+  ax2.imshow(g)
+  ax3.imshow(b)
+else:
+  #Customize with set_all and a dictionary of {(index of the ax) : params}
+  S.set_all({
+      0:dict(title='R',ylabel='Image 1'), 
+      1:dict(title='G'),
+      2:dict(title='B'),
+      3:dict(ylabel='Image 2'),
+      6:dict(ylabel='Image 3'),
+      lambda i: i<6:dict(xticks=[]),
+      lambda i: i%3!=0:dict(yticks=[])
+  })
+  S.fig.patch.set_facecolor('white')
+```
+
+![example img 3](https://www.dropbox.com/s/gwnc6m1ov3tun58/subplotted_ex_3.png?raw=1)
 
 Project Organization
 ------------
