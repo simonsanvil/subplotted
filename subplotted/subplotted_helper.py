@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List, Tuple, Iterable, Union, Callable
+import numpy as np
 
 @dataclass
 class SubplottedHelper:
