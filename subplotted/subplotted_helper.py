@@ -54,11 +54,11 @@ class SubplottedHelper:
     '''
     if isinstance(indices,dict):
       for inds,kwargs in indices.items():
-        self.set_all(inds,**kwargs)
+        self.set_all_(inds,**kwargs)
       return
-    return self.apply_all('set',indices,**kwargs)
+    return self.set_all_(indices,**kwargs)
   
-  def apply_all(self,func:Union[Callable,str],indices:Union[List,Callable]=None,val=None,**kwargs):
+  def set_all_(self,indices:Union[List,Callable]=None,val=None,**kwargs):
     '''
     Apply function to all axes
 
@@ -67,15 +67,12 @@ class SubplottedHelper:
     func : Callable or str
         Callable or name of a matplotlib.axes function to apply to the ax.
         If a callable it must receive a matplotlib.axes ax as its first parameter.
-
     indices : List, Callable or int
         Indices of the axes for which the function will be applied (starting with 0).
         If a callable it is expected to receive an index number of an ax and return a boolean value
         of whether or not the function should be applied to that index.
-
     val : optional
         Single value to pass to func as second argument
-        
     **kwargs
         Arguments to pass to func
     '''
@@ -90,11 +87,14 @@ class SubplottedHelper:
         if not indices(i):
           continue
       elif i not in indices:
+        # print(f"{i} not in indices")
         continue
       
-      if isinstance(func,str):
-        func = getattr(ax,func)
-      if val is None:
-        func(**kwargs)
-      else:
-        func(val,**kwargs)
+      # if isinstance(func,str):
+      #   func = getattr(ax,func)
+      # if val is None:
+      #   func(**kwargs)
+      # else:
+      #   func(val,**kwargs)
+
+      ax.set(**kwargs)
