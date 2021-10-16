@@ -96,5 +96,8 @@ class SubplottedHelper:
       #   func(**kwargs)
       # else:
       #   func(val,**kwargs)
-
+      for arg in kwargs:
+        if isinstance(kwargs[arg],Callable):
+          kwargs[arg] = kwargs[arg](i)
+          
       ax.set(**kwargs)
