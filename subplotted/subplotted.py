@@ -42,6 +42,9 @@ def subplotted(
       iterable = range(iterable)
   elif isinstance(iterable,(enumerate)) or not isinstance(iterable,Iterable):
     iterable = list(iterable)
+   
+  if axes_per_iter<=1:
+    return subplotted_1d(iterable,ncols=ncols,figsize=figsize,zipped=zipped,**kwargs)
 
   nrows = get_nrows_from_iterable(iterable,ncols)
   figsize = figsize if figsize is not None else (ncols*8,nrows*5)
@@ -66,12 +69,29 @@ def subplotted(
     axlist = [ax for subl in axes for ax in subl]
     inner_grid_shape = (1,1)
 
-  S = SubplottedHelper(iterable,fig,axlist,outer_grid,inner_grid_shape,dict(ncols=ncols,ncols_second_dim=2,axes_per_iter=axes_per_iter))
+  S = SubplottedHelper(iterable,fig,axlist,outer_grid,inner_grid_shape,dict(ncols=ncols,ncols_second_dim=ncols_second_dim,axes_per_iter=axes_per_iter))
 
   if zipped:
     return zip([S for _ in axlist],axlist,iterable)
   else:
     return (S,axlist,iterable)
+
+def subplotted_1d(iterable,ncols=2,figsize=None,zipped=True ,**kwargs):
+    if isinstance(iterable,int):
+        iterable = range(iterable)
+    total_rows = np.ceil(len(iterable)/ncols).astype(int)
+    figsize = figsize if figsize is not None else (ncols*10,total_rows*6)
+    fig, axes = plt.subplots(total_rows,ncols,figsize=figsize,**kwargs)
+    axes = np.atleast_2d(axes)
+    axlist = [ax for subl in axes for ax in subl]
+    if len(axlist) > len(iterable):
+        for ax in axlist[len(iterable):]:
+            ax.axis('off')
+    S = SubplottedHelper(iterable,fig,axlist,fig,[],dict(ncols=ncols,ncols_second_dim=1,axes_per_iter=1))
+    if zipped:
+        return zip([S for _ in axlist],axlist,iterable)
+    else:
+        return (S,axlist,iterable)
 
 def get_nrows_from_iterable(iterable,ncols):
   return np.ceil(len(iterable)/ncols).astype(int)
