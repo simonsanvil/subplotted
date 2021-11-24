@@ -7,7 +7,7 @@ Installation
 -------------
 
 ```
-pip install git+git://github.com/simonsanvil/subplotted.git
+pip install git+https://github.com/simonsanvil/subplotted.git
 ```
 
 Usage
